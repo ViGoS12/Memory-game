@@ -1,7 +1,7 @@
 import styles from './scss/Start.module.scss'
 import { Link } from 'react-router-dom'
 
-const Start = () => {
+const Start: React.FC = () => {
   return (
     <>
       <div className={styles.game}>

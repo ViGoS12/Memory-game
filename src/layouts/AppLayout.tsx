@@ -3,7 +3,7 @@ import Header from '../components/header'
 
 import { memo } from 'react'
 
-const AppLayout = () => {
+const AppLayout: React.FC = () => {
   return (
     <>
       <Header />
