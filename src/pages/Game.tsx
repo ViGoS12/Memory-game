@@ -8,6 +8,9 @@ const Game: React.FC = () => {
         <div className={styles.game__container}>
           <CardList />
         </div>
+        <div className={styles.game__footer}>
+          <button>Restart game</button>
+        </div>
       </div>
     </>
   )
