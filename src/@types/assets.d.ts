@@ -11,5 +11,5 @@ declare module '*.svg' {
 type CardBlock = {
   id: number
   img: string
-  stat: string
+  status: string
 }

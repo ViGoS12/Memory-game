@@ -1,0 +1,18 @@
+export const DEFAULT_CARDS = [
+  { id: 1, img: '/svg/angular.svg', status: '' },
+  { id: 1, img: '/svg/angular.svg', status: '' },
+  { id: 2, img: '/svg/aurelia.svg', status: '' },
+  { id: 2, img: '/svg/aurelia.svg', status: '' },
+  { id: 3, img: '/svg/backbone.svg', status: '' },
+  { id: 3, img: '/svg/backbone.svg', status: '' },
+  { id: 4, img: '/svg/ember.svg', status: '' },
+  { id: 4, img: '/svg/ember.svg', status: '' },
+  { id: 5, img: '/svg/js-badge.svg', status: '' },
+  { id: 5, img: '/svg/js-badge.svg', status: '' },
+  { id: 6, img: '/svg/react.svg', status: '' },
+  { id: 6, img: '/svg/react.svg', status: '' },
+  { id: 7, img: '/svg/vue.svg', status: '' },
+  { id: 7, img: '/svg/vue.svg', status: '' },
+  { id: 8, img: '/svg/node-js.svg', status: '' },
+  { id: 8, img: '/svg/node-js.svg', status: '' },
+]
