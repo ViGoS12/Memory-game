@@ -3,12 +3,12 @@ import styles from './CardList.module.scss'
 import CardBlock from '../CardBlock'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { setCards } from '../../redux/slices/gameSlice'
+import { checkCard, setCards, setPrevCard } from '../../redux/slices/gameSlice'
 
 const CardList: React.FC = () => {
   const dispatch = useDispatch()
 
-  const { cards } = useSelector((state: RootState) => state.game)
+  const { cards, prevCard } = useSelector((state: RootState) => state.game)
 
   console.log(cards)
 
@@ -33,13 +33,19 @@ const CardList: React.FC = () => {
   // }
 
   const handleClick = (id: CardBlock['id']) => {
-    dispatch(
-      setCards(
-        cards.map((card, idx) => {
-          return idx === id ? { ...card, status: 'open' } : card
-        })
+    console.log(prevCard)
+    if (prevCard === -1) {
+      dispatch(
+        setCards(
+          cards.map((card, idx) => {
+            return idx === id ? { ...card, status: 'open' } : card
+          })
+        )
       )
-    )
+      dispatch(setPrevCard(id))
+    } else {
+      dispatch(checkCard(id))
+    }
   }
 
   return (

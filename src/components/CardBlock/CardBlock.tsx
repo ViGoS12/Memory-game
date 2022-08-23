@@ -1,5 +1,6 @@
 import styles from './CardBlock.module.scss'
 import classNames from 'classnames'
+import { useState } from 'react'
 
 interface ICardBlockProps {
   card: CardBlock
@@ -8,16 +9,23 @@ interface ICardBlockProps {
 }
 
 const CardBlock: React.FC<ICardBlockProps> = ({ card, handleClick, id }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const setOpen = () => {
+    setIsOpen(true)
+  }
+
   console.log(card)
   return (
     <div
-      onClick={() => handleClick(id)}
       className={classNames(styles.cardblock, {
-        [styles.cardblock__open]: card.status === 'open',
-        // [styles.cardblock__open]: card.status === '',
-        // [styles.cardblock__open]: card.status === '',
-      })}>
-      <img className={styles.cardblock__img} src={card.img} alt='' />
+        [styles.cardblock__flipped]: isOpen,
+      })}
+      onClick={setOpen}>
+      <div className={styles.cardblock__front}>
+        <img className={styles.cardblock__img} src={card.img} alt='' />
+      </div>
+      <div className={styles.cardblock__back}></div>
     </div>
   )
 }
