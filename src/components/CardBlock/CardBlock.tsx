@@ -1,27 +1,26 @@
 import styles from './CardBlock.module.scss'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
 interface ICardBlockProps {
   card: CardBlock
-  handleClick: (id: CardBlock['id']) => void
-  id: number
+  idx: number
+  flipCard: (idx: number) => void
 }
 
-const CardBlock: React.FC<ICardBlockProps> = ({ card, handleClick, id }) => {
-  const [isOpen, setIsOpen] = useState(false)
+const CardBlock: React.FC<ICardBlockProps> = ({ card, idx, flipCard }) => {
+  const { activeCards, matchingCards } = useSelector(
+    (state: RootState) => state.game
+  )
 
-  const setOpen = () => {
-    setIsOpen(true)
-  }
-
-  console.log(card)
   return (
     <div
       className={classNames(styles.cardblock, {
-        [styles.cardblock__flipped]: isOpen,
+        [styles.cardblock__flipped]:
+          activeCards.indexOf(idx) !== -1 || matchingCards.indexOf(idx) !== -1,
       })}
-      onClick={setOpen}>
+      onClick={() => flipCard(idx)}>
       <div className={styles.cardblock__front}>
         <img className={styles.cardblock__img} src={card.img} alt='' />
       </div>
