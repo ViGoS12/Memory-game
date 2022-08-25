@@ -12,6 +12,7 @@
 
   &__flipped {
     transform: rotateY(0);
+    pointer-events: none;
   }
 
   &__img {

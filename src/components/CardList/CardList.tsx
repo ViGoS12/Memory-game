@@ -3,21 +3,31 @@ import styles from './CardList.module.scss'
 import CardBlock from '../CardBlock'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { setActiveCard, setMatchingCards } from '../../redux/slices/gameSlice'
+import {
+  setActiveCard,
+  setMatchingCards,
+  setWin,
+} from '../../redux/slices/gameSlice'
 
 const CardList: React.FC = () => {
   const dispatch = useDispatch()
 
-  const { cards, activeCards } = useSelector((state: RootState) => state.game)
+  const { cards, activeCards, matchingCards } = useSelector(
+    (state: RootState) => state.game
+  )
 
-  const flipCard = (idx: number) => {
-    if (activeCards[0] !== idx) {
-      dispatch(setActiveCard(idx))
+  const flipCard = async (idx: number) => {
+    dispatch(setActiveCard(idx))
+
+    if (activeCards.length === 2) {
+      if (cards[activeCards[0]]?.id === cards[activeCards[1]]?.id) {
+        dispatch(setMatchingCards(activeCards[0]))
+        dispatch(setMatchingCards(activeCards[1]))
+      }
     }
-
-    if (cards[activeCards[0]].id === cards[idx].id) {
-      dispatch(setMatchingCards(activeCards[0]))
-      dispatch(setMatchingCards(idx))
+    console.log(cards.length, matchingCards.length)
+    if (cards.length === matchingCards.length + 2) {
+      dispatch(setWin(true))
     }
   }
 

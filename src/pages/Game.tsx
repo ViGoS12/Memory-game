@@ -1,11 +1,14 @@
 import styles from './scss/Game.module.scss'
 import CardList from './../components/CardList/'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { restartGame } from '../redux/slices/gameSlice'
 import { Link } from 'react-router-dom'
+import { RootState } from '../redux/store'
 
 const Game: React.FC = () => {
   const dispatch = useDispatch()
+  const { isWin } = useSelector((state: RootState) => state.game)
+
   const restart = () => {
     dispatch(restartGame())
   }
@@ -16,6 +19,7 @@ const Game: React.FC = () => {
           <CardList />
         </div>
         <div className={styles.game__footer}>
+          {isWin && <>You won</>}
           <button className={styles.game__btn} onClick={restart}>
             Restart game
           </button>
