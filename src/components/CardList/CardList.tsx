@@ -25,7 +25,7 @@ const CardList: React.FC = () => {
         dispatch(setMatchingCards(activeCards[1]))
       }
     }
-    console.log(cards.length, matchingCards.length)
+
     if (cards.length === matchingCards.length + 2) {
       dispatch(setWin(true))
     }

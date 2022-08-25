@@ -8,7 +8,6 @@ interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = ({ children, ...props }) => {
-  console.log(props.color)
   return (
     <button
       {...props}

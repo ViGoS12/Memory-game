@@ -28,6 +28,7 @@ export const gameSlice = createSlice({
       state.activeCards = []
       state.matchingCards = []
       state.cards = [...DEFAULT_CARDS].sort(() => Math.random() - 0.5)
+      state.isWin = false
     },
 
     setMatchingCards(state: IGameState, action: PayloadAction<number>) {

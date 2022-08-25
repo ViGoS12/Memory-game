@@ -5,16 +5,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &__btn {
-    background-color: $purple;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
 }

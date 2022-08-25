@@ -1,17 +1,24 @@
 import styles from './scss/Game.module.scss'
+
+import Modal from './../components/UI/Modal/'
+import Button from '../components/UI/Button'
+
 import CardList from './../components/CardList/'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { restartGame } from '../redux/slices/gameSlice'
-import { Link } from 'react-router-dom'
 import { RootState } from '../redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { useCallback } from 'react'
+import { Link } from 'react-router-dom'
 
 const Game: React.FC = () => {
   const dispatch = useDispatch()
   const { isWin } = useSelector((state: RootState) => state.game)
 
-  const restart = () => {
+  const restart = useCallback(() => {
     dispatch(restartGame())
-  }
+  }, [])
   return (
     <>
       <div className={styles.game}>
@@ -19,15 +26,13 @@ const Game: React.FC = () => {
           <CardList />
         </div>
         <div className={styles.game__footer}>
-          {isWin && <>You won</>}
-          <button className={styles.game__btn} onClick={restart}>
-            Restart game
-          </button>
-          <Link className={styles.game__btn} to='/' onClick={restart}>
-            New Game
+          <Button onClick={restart}>Restart game</Button>
+          <Link to='/'>
+            <Button onClick={restart}>New Game</Button>
           </Link>
         </div>
       </div>
+      <Modal active={isWin} restart={restart} />
     </>
   )
 }
