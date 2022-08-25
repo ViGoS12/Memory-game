@@ -2,6 +2,7 @@ import styles from './CardBlock.module.scss'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { memo } from 'react'
 
 interface ICardBlockProps {
   card: CardBlock
@@ -29,4 +30,4 @@ const CardBlock: React.FC<ICardBlockProps> = ({ card, idx, flipCard }) => {
   )
 }
 
-export default CardBlock
+export default memo(CardBlock)

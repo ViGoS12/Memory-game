@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import {
   setActiveCard,
+  setClick,
   setMatchingCards,
   setWin,
 } from '../../redux/slices/gameSlice'
@@ -16,8 +17,9 @@ const CardList: React.FC = () => {
     (state: RootState) => state.game
   )
 
-  const flipCard = async (idx: number) => {
+  const flipCard = (idx: number) => {
     dispatch(setActiveCard(idx))
+    dispatch(setClick())
 
     if (activeCards.length === 2) {
       if (cards[activeCards[0]]?.id === cards[activeCards[1]]?.id) {

@@ -1,5 +1,6 @@
 import styles from './Button.module.scss'
 import { ReactNode } from 'react'
+import { memo } from 'react'
 
 interface IButtonProps {
   children: ReactNode
@@ -19,4 +20,4 @@ const Button: React.FC<IButtonProps> = ({ children, ...props }) => {
   )
 }
 
-export default Button
+export default memo(Button)

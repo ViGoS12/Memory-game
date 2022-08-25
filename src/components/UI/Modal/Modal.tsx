@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom'
 interface IModalProps {
   active: Boolean
   restart: () => void
+  clicks: number
 }
 
-const Modal: React.FC<IModalProps> = ({ active, restart }) => {
+const Modal: React.FC<IModalProps> = ({ active, restart, clicks }) => {
   return (
     <div
       className={classNames(styles.modal, {
@@ -23,6 +24,7 @@ const Modal: React.FC<IModalProps> = ({ active, restart }) => {
           [styles.content__active]: active,
         })}>
         Game Over
+        <div>Clicks made {active && clicks}</div>
         <div className={styles.modal__buttons}>
           <Button onClick={restart}>Restart game</Button>
           <Link to='/'>

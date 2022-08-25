@@ -7,6 +7,7 @@ interface IGameState {
   activeCards: number[]
   matchingCards: number[]
   isWin: boolean
+  clicks: number
 }
 
 const initialState: IGameState = {
@@ -15,6 +16,7 @@ const initialState: IGameState = {
   activeCards: [],
   matchingCards: [],
   isWin: false,
+  clicks: 0,
 }
 
 export const gameSlice = createSlice({
@@ -29,6 +31,7 @@ export const gameSlice = createSlice({
       state.matchingCards = []
       state.cards = [...DEFAULT_CARDS].sort(() => Math.random() - 0.5)
       state.isWin = false
+      state.clicks = 0
     },
 
     setMatchingCards(state: IGameState, action: PayloadAction<number>) {
@@ -44,6 +47,10 @@ export const gameSlice = createSlice({
     setWin(state: IGameState, action: PayloadAction<boolean>) {
       state.isWin = action.payload
     },
+
+    setClick(state: IGameState) {
+      state.clicks += 1
+    },
   },
 })
 
@@ -53,5 +60,6 @@ export const {
   setActiveCard,
   setMatchingCards,
   setWin,
+  setClick,
 } = gameSlice.actions
 export default gameSlice.reducer

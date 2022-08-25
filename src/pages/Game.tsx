@@ -14,11 +14,12 @@ import { Link } from 'react-router-dom'
 
 const Game: React.FC = () => {
   const dispatch = useDispatch()
-  const { isWin } = useSelector((state: RootState) => state.game)
+  const { isWin, clicks } = useSelector((state: RootState) => state.game)
 
   const restart = useCallback(() => {
     dispatch(restartGame())
   }, [])
+
   return (
     <>
       <div className={styles.game}>
@@ -26,13 +27,14 @@ const Game: React.FC = () => {
           <CardList />
         </div>
         <div className={styles.game__footer}>
+          <div>Clicks {clicks}</div>
           <Button onClick={restart}>Restart game</Button>
           <Link to='/'>
             <Button onClick={restart}>New Game</Button>
           </Link>
         </div>
       </div>
-      <Modal active={isWin} restart={restart} />
+      <Modal active={isWin} restart={restart} clicks={clicks} />
     </>
   )
 }
