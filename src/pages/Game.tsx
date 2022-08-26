@@ -9,7 +9,7 @@ import { restartGame } from '../redux/slices/gameSlice'
 import { RootState } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
 const Game: React.FC = () => {
@@ -39,4 +39,4 @@ const Game: React.FC = () => {
   )
 }
 
-export default Game
+export default memo(Game)

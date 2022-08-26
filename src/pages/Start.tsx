@@ -6,9 +6,11 @@ const Start: React.FC = () => {
   return (
     <>
       <div className={styles.game}>
-        <Link to='/Game'>
-          <Button color='#c294fa'>Play</Button>
-        </Link>
+        <div className={styles.game__content}>
+          <Link to='/Game'>
+            <Button color='#c294fa'>Play</Button>
+          </Link>
+        </div>
       </div>
     </>
   )
