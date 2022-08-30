@@ -11,9 +11,10 @@ interface IModalProps {
   active: Boolean
   restart: () => void
   clicks: number
+  time: string
 }
 
-const Modal: React.FC<IModalProps> = ({ active, restart, clicks }) => {
+const Modal: React.FC<IModalProps> = ({ active, restart, clicks, time }) => {
   return (
     <div
       className={classNames(styles.modal, {
@@ -25,6 +26,7 @@ const Modal: React.FC<IModalProps> = ({ active, restart, clicks }) => {
         })}>
         Game Over
         <div>Clicks made {active && clicks}</div>
+        <div>Time {time}</div>
         <div className={styles.modal__buttons}>
           <Button onClick={restart}>Restart game</Button>
           <Link to='/'>
