@@ -5,20 +5,34 @@ import Button from '../components/UI/Button'
 
 import CardList from './../components/CardList/'
 
-import { restartGame } from '../redux/slices/gameSlice'
+import { restartGame, setTime } from '../redux/slices/gameSlice'
 import { RootState } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Game: React.FC = () => {
   const dispatch = useDispatch()
-  const { isWin, clicks } = useSelector((state: RootState) => state.game)
+  const { isWin, clicks, time } = useSelector((state: RootState) => state.game)
 
   const restart = useCallback(() => {
     dispatch(restartGame())
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      !isWin && dispatch(setTime(time + 1))
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [time])
+
+  const minutes = Math.floor(time / 60)
+  const seconds = time - minutes * 60
+
+  const timeDisplay = (time: number) => {
+    return String(time).padStart(2, '0')
+  }
 
   return (
     <>
@@ -32,9 +46,20 @@ const Game: React.FC = () => {
           <Link to='/'>
             <Button onClick={restart}>New Game</Button>
           </Link>
+          <div className={styles.game__timer}>
+            Time:
+            <span> {timeDisplay(minutes)}</span>
+            <span>:</span>
+            <span>{timeDisplay(seconds)}</span>
+          </div>
         </div>
       </div>
-      <Modal active={isWin} restart={restart} clicks={clicks} />
+      <Modal
+        active={isWin}
+        restart={restart}
+        clicks={clicks}
+        time={timeDisplay(minutes) + ':' + timeDisplay(seconds)}
+      />
     </>
   )
 }
